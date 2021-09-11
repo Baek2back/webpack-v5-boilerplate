@@ -6,9 +6,16 @@
   "author": "Baek2back <dumbuk12@naver.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --mode=development --open"
+    "start": "webpack serve --mode=development --open",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.+(js,jsx,ts,tsx,json,css,scss,md)": ["eslint --fix", "git add"]
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
@@ -21,6 +28,8 @@
     "eslint-plugin-prettier": "^3.4.1",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.1.2",
     "mini-css-extract-plugin": "^2.2.0",
     "prettier": "^2.3.2",
     "sass": "^1.38.0",
