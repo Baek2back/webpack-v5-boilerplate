@@ -14,10 +14,19 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
     sourceType: "module",
+    project: "./tsconfig.json",
   },
   plugins: ["@typescript-eslint", "import"],
   rules: {
     "prettier/prettier": "error",
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {},
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
   },
   ignorePatterns: ["index.html"],
 };
