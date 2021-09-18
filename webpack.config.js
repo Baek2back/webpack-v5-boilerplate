@@ -17,7 +17,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
     {
       loader: "css-loader",
       options: {
-        sourceMap: sourceMap || mode === "development",
+        sourceMap: mode === "development",
         modules: !!modules,
         importLoaders: 2,
       },
@@ -32,7 +32,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
             "postcss-fail-on-warn",
           ],
         },
-        sourceMap: true,
+        sourceMap: mode === "development",
       },
     },
     {
@@ -40,7 +40,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
       options: {
         // Prefer `dart-sass`
         implementation: require("sass"),
-        sourceMap: true,
+        sourceMap: mode === "development",
       },
     },
   ],
