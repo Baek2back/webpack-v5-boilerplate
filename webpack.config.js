@@ -19,6 +19,20 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
       options: {
         sourceMap: sourceMap || mode === "development",
         modules: !!modules,
+        importLoaders: 2,
+      },
+    },
+    {
+      loader: "postcss-loader",
+      options: {
+        postcssOptions: {
+          plugins: [
+            "postcss-flexbugs-fixes",
+            "autoprefixer",
+            "postcss-fail-on-warn",
+          ],
+        },
+        sourceMap: true,
       },
     },
     {
@@ -26,6 +40,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
       options: {
         // Prefer `dart-sass`
         implementation: require("sass"),
+        sourceMap: true,
       },
     },
   ],
@@ -47,10 +62,10 @@ module.exports = (env, argv) => {
           test: /\.html$/,
           use: "html-loader",
         },
-        cssRule({ test: cssRegex, exclude: cssModuleRegex }),
-        cssRule({ test: cssModuleRegex, modules: true }),
-        cssRule({ test: sassRegex, exclude: sassModuleRegex }),
-        cssRule({ test: sassModuleRegex, modules: true }),
+        cssRule({ test: cssRegex, exclude: cssModuleRegex, mode }),
+        cssRule({ test: cssModuleRegex, modules: true, mode }),
+        cssRule({ test: sassRegex, exclude: sassModuleRegex, mode }),
+        cssRule({ test: sassModuleRegex, modules: true, mode }),
       ],
     },
     resolve: {

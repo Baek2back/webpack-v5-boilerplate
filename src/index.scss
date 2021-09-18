@@ -1,4 +1,22 @@
 body {
   background: red;
+  display: flex;
   height: 100vh;
 }
+
+.autoplacement-example {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+}
+
+html, body {
+  background: linear-gradient(#e98a00, #f5aa2f);
+  display: flex;
+  height: 100%;
+  height: 0;
+  margin: 0;
+}
+
+.foo { flex: 1; }

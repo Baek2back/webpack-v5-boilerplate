@@ -7,17 +7,28 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --mode=development --open",
+    "build": "webpack",
     "prepare": "husky install",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.+(js,jsx,ts,tsx)": ["eslint --fix", "git add"]
+    "src/**/*.+(js,jsx,ts,tsx)": [
+      "eslint --fix",
+      "git add"
+    ]
   },
+  "browserslist": [
+    "last 3 version",
+    "Chrome >= 59",
+    "ie 11",
+    "not ie <= 10"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.29.2",
     "@typescript-eslint/parser": "^4.29.2",
+    "autoprefixer": "^10.3.4",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^6.2.0",
     "dotenv-webpack": "^7.0.3",
@@ -31,6 +42,10 @@
     "husky": "^7.0.0",
     "lint-staged": "^11.1.2",
     "mini-css-extract-plugin": "^2.2.0",
+    "postcss": "^8.3.6",
+    "postcss-fail-on-warn": "^0.2.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^6.1.1",
     "prettier": "^2.3.2",
     "sass": "^1.38.0",
     "sass-loader": "^12.1.0",
