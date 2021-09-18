@@ -17,7 +17,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
     {
       loader: "css-loader",
       options: {
-        sourceMap: mode === "development",
+        sourceMap,
         modules: !!modules,
         importLoaders: 2,
       },
@@ -32,7 +32,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
             "postcss-fail-on-warn",
           ],
         },
-        sourceMap: mode === "development",
+        sourceMap,
       },
     },
     {
@@ -40,7 +40,7 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
       options: {
         // Prefer `dart-sass`
         implementation: require("sass"),
-        sourceMap: mode === "development",
+        sourceMap,
       },
     },
   ],
@@ -48,8 +48,9 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
 
 module.exports = (env, argv) => {
   const { mode } = argv;
+  const isDevelopment = mode === "development";
   return {
-    mode: mode === "development" ? "development" : "production",
+    mode: isDevelopment ? "development" : "production",
     entry: "./src/index.ts",
     module: {
       rules: [
@@ -62,10 +63,30 @@ module.exports = (env, argv) => {
           test: /\.html$/,
           use: "html-loader",
         },
-        cssRule({ test: cssRegex, exclude: cssModuleRegex, mode }),
-        cssRule({ test: cssModuleRegex, modules: true, mode }),
-        cssRule({ test: sassRegex, exclude: sassModuleRegex, mode }),
-        cssRule({ test: sassModuleRegex, modules: true, mode }),
+        cssRule({
+          test: cssRegex,
+          exclude: cssModuleRegex,
+          mode,
+          sourceMap: isDevelopment,
+        }),
+        cssRule({
+          test: cssModuleRegex,
+          modules: true,
+          mode,
+          sourceMap: isDevelopment,
+        }),
+        cssRule({
+          test: sassRegex,
+          exclude: sassModuleRegex,
+          mode,
+          sourceMap: isDevelopment,
+        }),
+        cssRule({
+          test: sassModuleRegex,
+          modules: true,
+          mode,
+          sourceMap: isDevelopment,
+        }),
       ],
     },
     resolve: {
