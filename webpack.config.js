@@ -82,8 +82,8 @@ module.exports = (env, argv) => {
       port: 9000,
     },
     output: {
-      filename: "bundle.js",
       path: path.resolve(__dirname, "dist"),
+      filename: "[name].bundle.js",
     },
     plugins: [
       new Dotenv(),
