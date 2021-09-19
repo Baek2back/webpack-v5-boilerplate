@@ -18,7 +18,12 @@ const cssRule = ({ exclude, modules, sourceMap, test, mode }) => ({
       loader: "css-loader",
       options: {
         sourceMap,
-        modules: !!modules,
+        modules: !!modules && {
+          localIdentName:
+            mode === "development"
+              ? "[path][name]__[local]--[hash:base64:5]"
+              : "[hash:base64]",
+        },
         importLoaders: 2,
       },
     },
