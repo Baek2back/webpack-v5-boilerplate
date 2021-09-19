@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:import/recommended",
+    "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
@@ -19,6 +20,20 @@ module.exports = {
   plugins: ["@typescript-eslint", "import"],
   rules: {
     "prettier/prettier": "error",
+    "import/no-unresolved": "error",
+    "import/named": "error",
+    "import/namespace": "error",
+    "import/default": "error",
+    "import/export": "error",
+    "import/order": [
+      "error",
+      {
+        groups: ["builtin", "external", "parent", "sibling", "index"],
+        alphabetize: {
+          order: "asc",
+        },
+      },
+    ],
   },
   settings: {
     "import/resolver": {
@@ -28,5 +43,5 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ["index.html"],
+  ignorePatterns: ["index.html", ".eslintrc.js", "webpack.config.js"],
 };
