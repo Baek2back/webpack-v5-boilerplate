@@ -106,6 +106,7 @@ module.exports = (env, argv) => {
       },
       compress: true,
       port: 9000,
+      hot: true
     },
     output: {
       path: path.resolve(__dirname, "dist"),
