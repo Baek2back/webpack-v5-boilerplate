@@ -8,6 +8,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:compat/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
@@ -34,6 +35,7 @@ module.exports = {
         },
       },
     ],
+    "compat/compat": "warn"
   },
   settings: {
     "import/resolver": {
@@ -42,5 +44,6 @@ module.exports = {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
     },
+    "polyfills": []
   }
 };
