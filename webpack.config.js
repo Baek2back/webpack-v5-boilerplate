@@ -1,8 +1,8 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Dotenv = require("dotenv-webpack");
 const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
@@ -61,7 +61,17 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.tsx?$/,
-          use: "ts-loader",
+          use: [
+            {
+              loader: "babel-loader",
+              options: {
+                presets: [
+                  ["@babel/preset-env", { useBuiltIns: "usage", corejs: 3 }],
+                ],
+              },
+            },
+            "ts-loader",
+          ],
           exclude: /node_modules/,
         },
         {
@@ -106,7 +116,7 @@ module.exports = (env, argv) => {
       },
       compress: true,
       port: 9000,
-      hot: true
+      hot: true,
     },
     output: {
       path: path.resolve(__dirname, "dist"),

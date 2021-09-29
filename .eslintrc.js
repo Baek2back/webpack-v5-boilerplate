@@ -42,6 +42,5 @@ module.exports = {
         extensions: [".js", ".jsx", ".ts", ".tsx"],
       },
     },
-  },
-  ignorePatterns: ["index.html", ".eslintrc.js", "webpack.config.js"],
+  }
 };
