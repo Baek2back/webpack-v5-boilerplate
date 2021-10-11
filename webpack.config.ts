@@ -1,5 +1,4 @@
 import path from "path";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import Dotenv from "dotenv-webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
@@ -131,11 +130,11 @@ const config: Configuration = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
+    clean: true,
   },
   plugins: [
     new Dotenv(),
     new MiniCssExtractPlugin(),
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "public/index.html",
     }),
