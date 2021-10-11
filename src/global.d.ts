@@ -4,6 +4,6 @@ declare module "*.scss" {
 }
 
 declare module "*.module.scss" {
-  const styles: { [className: string]: string };
+  const styles: Record<string, CSSRule>;
   export default styles;
 }
