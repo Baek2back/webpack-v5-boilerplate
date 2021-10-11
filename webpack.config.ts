@@ -59,6 +59,16 @@ const cssRule = ({ exclude, modules, sourceMap, test }: CssRuleArgs) => ({
         // Prefer `dart-sass`
         implementation: require("sass"),
         sourceMap,
+        additionalData: `
+          @use "sass:color";
+          @use "sass:list";
+          @use "sass:map";
+          @use "sass:math";
+          @use "sass:meta";
+          @use "sass:selector";
+          @use "sass:string";
+          @use "@/mixins" as mixins;
+        `,
       },
     },
   ],
