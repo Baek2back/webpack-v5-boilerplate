@@ -11,7 +11,6 @@ type Configuration = WebpackConfiguration & {
 };
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-console.log("isDevelopment", isDevelopment);
 
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
