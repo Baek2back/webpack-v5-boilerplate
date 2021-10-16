@@ -7,3 +7,8 @@ declare module "*.module.scss" {
   const styles: Record<string, CSSRule>;
   export default styles;
 }
+
+declare module "*.png" {
+  const content: string;
+  export default content;
+}
