@@ -76,7 +76,7 @@ const cssRule = ({ exclude, modules, sourceMap, test }: CssRuleArgs) => ({
 
 const config: Configuration = {
   mode: isDevelopment ? "development" : "production",
-  entry: "./src/index.ts",
+  entry: "./src/index.tsx",
   module: {
     rules: [
       {
@@ -87,6 +87,7 @@ const config: Configuration = {
             options: {
               presets: [
                 ["@babel/preset-env", { useBuiltIns: "usage", corejs: 3.18 }],
+                "@babel/preset-react",
               ],
               plugins: [["@babel/plugin-transform-runtime", { corejs: 3 }]],
             },
@@ -147,7 +148,10 @@ const config: Configuration = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
+    filename: "[name].[hash:8].js",
+    sourceMapFilename: "[name].[hash:8].map",
+    chunkFilename: "[id].[hash:8].js",
+    publicPath: "/",
     clean: true,
   },
   plugins: [
@@ -157,6 +161,18 @@ const config: Configuration = {
       template: "public/index.html",
     }),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        commons: {
+          test: /node_modules/,
+          name: "vendor",
+          chunks: "all",
+        },
+      },
+    },
+  },
 };
 
 export default config;
