@@ -147,8 +147,10 @@ const config: Configuration = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
-    clean: true,
+    filename: "[name].[hash:8].js",
+    sourceMapFilename: "[name].[hash:8].map",
+    chunkFilename: "[id].[hash:8].js",
+    publicPath: "/",
   },
   plugins: [
     new Dotenv(),
@@ -157,6 +159,18 @@ const config: Configuration = {
       template: "public/index.html",
     }),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+        commons: {
+          test: /node_modules/,
+          name: "vendor",
+          chunks: "all",
+        },
+      },
+    },
+  },
 };
 
 export default config;
